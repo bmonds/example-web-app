@@ -7,9 +7,11 @@ addons:
 install:
   - npm install -g nightwatch
 before_script:
+  - npm install
   - npm start
   - sleep 3
 script:
+  - npm test
   - nightwatch --config nightwatch.conf.js --env chrome
   - pkill node
 env:
