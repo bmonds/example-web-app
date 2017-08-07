@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  p How many burritos would you like to order?
+  .container
+    .row
+      form(class='col-sm-4', action='/total')
+        div(class='form-group')
+          label(for='qty') Quantity
+          input(type='text', name='qty', id='qty', value='1', class='form-control')/
+        button(type='submit', class='btn btn-primary') Calculate Order
