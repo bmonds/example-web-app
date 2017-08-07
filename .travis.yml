@@ -2,3 +2,17 @@ language: node_js
 node_js:
   - "node"
   - "6"
+addons:
+  sauce_connect:
+    - secure: "yrQbvuDPufa0Sry3NYNb16Fz9Q8NjnjC/GnSUXJcMkI4pfldO6akvwZzxwDq0SP81TCpTGP5VViaYYyiI1clPosdzkfzUYz7uwH0SfbRTcRv2z4+VOI4n2YUprC9XEzQJwCRe20eyKJN+5nMowXVBxA12+X1t3NlpuXnGAyMVnXiShm98YR5lf3R9AZEIGZmyUUdKZ8ByozJcdPY0VUL/ztO4iD/5n+hlvqYk54+e2mSST4OTQMZDEi/rvFXZ0bCrYvfAgvHu2Ty66znfQsCRUjHt5Nmrtbz0DlIrQu/aKSoCne4tM6EldjqZ31eh/s0bTu7mGfgPanz4OCG2lZv6yrxfv8udRFaClkLw3Twru4c4Ao7pQm2GTnB5D1O7T+GhntwMxS9QK+NtoqhzrP6S2mg4CQ0dNqP9WQ0tRsgw8yh5dvGlkGASyJlkrb5PMd/C+wrHIFImN3FAJeDVy1UiHgxQQufm29zeYkEDzR2Ev+2zQIrZNv/p7r0d7LkV1tdaHRmgQTtJeiJ0fxbaSnG6ftioKqhwcyNcvlE9c9o4YG1vNqgo3T5pc343e0Iah4q1ujpCk6lq26/3ewm4vj+uj0gvmPFWfG0RNPvB2iYcKCZf9CKJ4Y5rL+psCzT1V3KtOTFgaH1wusB0ktOgwWZrZI6KOu7qSmnA4UjprlYx6M="
+    - secure: "YC2nE1CTXIRwWxIj7h/PQxDgWnRFJiT8fYTmwnjKR4SIClPbs6wJ3jC/sBEoGGCVXb0wei+6JQnRZH3YPzP5mWbvtZweVyNZ6bSrwGgATk4ukE223eX8hL9tdF/Zfd0/FOTjr4rRug67+KW3hrqwdYcAjUOn6CThUq6oPmiekZD3/GxejQ9LVWr/BR0RsQq/SUlX6tiD/EJbX2KRBq2NMMZdu3cQx+4zcbpDlYO+s3A9Ty2A+jaIX22MRInEg08FAQSkINOJZ8dZWdLKL8iR81vvGaQIuiz+k2WVCHW1qpzDnGF5Xz+7StVzgLK0IcL1YrwuLqbeYMlmRSKmTd0/mv1FvLWnaIrarHRDsnNb5MNt0kvr/wCER0IRQVzqKwwR5ypsuzZNcNwRU4uUe/Bjyof1iDQm4yUaCXZaYmrX8/RQKIO1m2+oU4qlzhAdV8eOsb0mVre/ME68g//mN4bZhNfmY4mDxbTAgs9oorq8+1VC8LIqZ5ckgG4A9TyJaeHLDnz54LaJLTntLF1qvrkuZw4Uqkev83er02rgtZG21tnyysKosMaRdEVL0+9myqPUqIIQRNooRWrXg2r6uk+VxTZoetHpG5bZB3q+NmS7t8XBYGNQmDR4OduMCMEQCWl2SIkx8cxj/LEXysheIUQee/RCH+PtVBV1Vsz8zqDNQ/k="
+
+install:
+  - npm install -g nightwatch
+
+before_script:
+  - npm start
+
+script:
+  - nightwatch --config nightwatch.conf.js --env chrome
+  - pkill node
