@@ -7,6 +7,6 @@
         path: /var/www
 
     - name: Start/Restart app
-      command: pm2 start app.js
+      command: pm2 startOrReload ecosystem.json
       args:
         chdir: /var/www

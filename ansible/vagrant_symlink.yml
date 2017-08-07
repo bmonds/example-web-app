@@ -5,6 +5,6 @@
   tasks:
     - name: Symlink to vagrant directory
       file:
-        src: /vagrant
+        src: /vagrant/burrito-calc
         dest: /var/www
         state: link

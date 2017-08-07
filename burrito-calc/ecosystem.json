@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "burrito-calc",
+      "script": "npm",
+      "args": "start",
+      "watch": true
+    }
+  ]
+}

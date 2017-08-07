@@ -1,8 +1,0 @@
-{
-  "name": "example-web-app",
-  "version": "0.0.1",
-
-  "dependencies": {
-    "express": "^4.15.3"
-  }
-}
