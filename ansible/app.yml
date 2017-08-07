@@ -1,0 +1,12 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Install app dependencies
+      npm:
+        path: /var/www
+
+    - name: Start/Restart app
+      command: pm2 start app.js
+      args:
+        chdir: /var/www

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Symlink to vagrant directory
+      file:
+        src: /vagrant
+        dest: /var/www
+        state: link
