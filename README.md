@@ -60,7 +60,13 @@ Update ec2.ini to change the region. Ansible scripts default to us-west-2.
 ### Provisioning a sever and running
 
 ```
-ansible-playbook ansible/main_aws.yml
+ansible-playbook ansible/main_aws.yml -i /etc/ansible/ec2.py --extra-vars "key=your-aws-key-name"
+```
+
+If using a different region.
+
+```
+ansible-playbook ansible/main_aws.yml -i /etc/ansible/ec2.py --extra-vars "key=your-aws-key-name region=us-west-1"
 ```
 
 If connecting to the wrong IP for deployment.
@@ -72,5 +78,5 @@ sudo /etc/ansible/ec2.py --refresh-cache
 ### Terminating the app
 
 ```
-ansible-playbook -i ec2.py ansible/aws_destroy2.yml
+ansible-playbook ansible/aws_destroy2.yml -i /etc/ansible/ec2.py
 ```

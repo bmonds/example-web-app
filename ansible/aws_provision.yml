@@ -30,7 +30,6 @@
 
     - name: EC2 Instance
       vars:
-        key: brian@brianmonds.com
         region: us-west-2
       ec2:
         key_name: "{{ key }}"
