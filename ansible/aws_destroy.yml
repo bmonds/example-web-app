@@ -1,0 +1,34 @@
+---
+- hosts: tag_app_burritotime
+  connection: local
+  gather_facts: false
+  vars:
+    region: us-west-2
+  tasks:
+    - name: Remove Instance from Security Group
+      ec2:
+        state: running
+        region: "{{ region }}"
+        instance_ids: "{{ ec2_id }}"
+        group_id: ""
+      delegate_to: localhost
+
+    - name: Terminate EC2 Instance
+      ec2:
+        state: absent
+        region: "{{ region }}"
+        instance_ids: "{{ ec2_id }}"
+        wait: true
+      delegate_to: localhost
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    region: us-west-2
+  tasks:
+    - name: Remove Security Group
+      ec2_group:
+        name: BurritoTimeSecurityGroup
+        region: "{{ region }}"
+        state: absent

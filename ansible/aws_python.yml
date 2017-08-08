@@ -1,0 +1,11 @@
+---
+- hosts: tag_app_burritotime
+  remote_user: ubuntu
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Refresh apt cache
+      raw: apt-get update
+
+    - name: Install python
+      raw: apt-get install -y python-simplejson

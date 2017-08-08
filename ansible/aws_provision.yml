@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  tasks:
+    - name: EC2 Security Group
+      vars:
+        my_ip: 0.0.0.0/0
+        region: us-west-2
+      ec2_group:
+        name: BurritoTimeSecurityGroup
+        description: Security Group for the Burrito Time app
+        region: "{{ region }}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{ my_ip }}"
+        rules_egress:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: 0.0.0.0/0
+
+    - name: EC2 Instance
+      vars:
+        key: brian@brianmonds.com
+        region: us-west-2
+      ec2:
+        key_name: "{{ key }}"
+        instance_type: t2.nano
+        image: ami-6e1a0117
+        region: "{{ region }}"
+        group: BurritoTimeSecurityGroup
+        instance_tags:
+          Name: burrito-time-server
+          app: burritotime
+        wait: true
+        wait_timeout: 600
+      register: ec2
+
+    - name: Waiting for instance...
+      wait_for:
+        host: "{{ item.public_ip }}"
+        port: 22
+        timeout: 600
+        state: started
+      with_items: "{{ ec2.instances }}"

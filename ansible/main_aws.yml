@@ -1,0 +1,9 @@
+---
+- include: aws_provision.yml
+- include: aws_python.yml
+- include: aws_deploy.yml
+#- include: nginx.yml
+#- include: nodejs.yml
+#- include: pm2.yml
+#- include: app.yml
+#- include: default_site.yml
