@@ -1,23 +1,9 @@
 ---
 - hosts: tag_app_burritotime
-  remote_user: ubuntu
   vars:
-    app_root: /var/www
-    appfiles: [ 'bin', 'public', 'routes', 'services', 'views', 'app.js', 'ecosystem.json', 'package.json' ]
-  tasks:
-    - name: Change owner
-      become: yes
-      file:
-        path: "{{ app_root }}"
-        owner: ubuntu
-        group: ubuntu
-        state: directory
-        recurse: yes
-
-    - name: Deploy files
-      copy:
-        src: "../{{ item }}"
-        dest: "{{ app_root }}/{{ item }}"
-        owner: ubuntu
-        group: ubuntu
-      with_items: "{{ appfiles }}"
+    is_vagrant: false
+  remote_user: ubuntu
+  gather_facts: false
+  become: yes
+  roles:
+    - deploy

@@ -1,3 +1,4 @@
+---
 - name: Vagrant symlink
   become: yes
   file:

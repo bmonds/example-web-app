@@ -2,6 +2,14 @@
 - hosts: all
   vars:
     is_vagrant: true
+  gather_facts: false
+  become: yes
+  roles:
+    - ansible_prep
+
+- hosts: all
+  vars:
+    is_vagrant: true
   roles:
     - setup
     - deploy

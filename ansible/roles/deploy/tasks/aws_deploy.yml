@@ -1,5 +1,5 @@
 ---
-- name: Change owner
+- name: Change owner (AWS)
   become: yes
   file:
     path: /var/www
@@ -8,10 +8,10 @@
     state: directory
     recurse: yes
 
-- name: Deploy files
+- name: Deploy files (AWS)
   copy:
     src: "../{{ item }}"
-    dest: "/var/www/{{ item }}"
+    dest: /var/www/
     owner: ubuntu
     group: ubuntu
   with_items: [ 'bin', 'public', 'routes', 'services', 'views', 'app.js', 'ecosystem.json', 'package.json' ]

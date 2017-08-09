@@ -1,9 +1,30 @@
 ---
-- include: aws_provision.yml
-- import: aws_python.yml
-- import: aws_deploy.yml
-#- include: nginx.yml
-#- include: nodejs.yml
-#- include: pm2.yml
-#- include: app.yml
-#- include: default_site.yml
+- hosts: localhost
+  roles:
+    - aws_provision
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Refresh EC2 cache
+      command: /etc/ansible/ec2.py --refresh-cache
+    - name: Refresh in-memory EC2 cache
+      meta: refresh_inventory
+
+- hosts: tag_app_burritotime
+  remote_user: ubuntu
+  gather_facts: false
+  become: yes
+  roles:
+    - ansible_prep
+
+- hosts: tag_app_burritotime
+  vars:
+    is_vagrant: false
+  remote_user: ubuntu
+  gather_facts: false
+  become: yes
+  roles:
+    - setup
+    - deploy
