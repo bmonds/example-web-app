@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha"
+    "test-unit": "mocha",
+    "test-e2e": "nightwatch --config nightwatch.conf.js --env chrome",
+    "test": "npm run test-unit && npm run test-e2e"
   },
   "dependencies": {
     "body-parser": "~1.17.1",

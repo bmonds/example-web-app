@@ -11,8 +11,8 @@ before_script:
   - npm start &
   - sleep 3
 script:
-  - npm test
-  - nightwatch --config nightwatch.conf.js --env chrome
+  - npm run test-unit
+  - npm run test-e2e
   - pkill node
 env:
   global:
