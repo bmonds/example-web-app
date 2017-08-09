@@ -1,0 +1,7 @@
+---
+- include: vagrant_symlink.yml
+  when: is_vagrant == true
+- include: nginx.yml
+- include: nodejs.yml
+- include: pm2.yml
+- include: default_site.yml

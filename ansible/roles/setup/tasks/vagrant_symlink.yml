@@ -1,0 +1,6 @@
+- name: Vagrant symlink
+  become: yes
+  file:
+    src: /vagrant
+    dest: /var/www
+    state: link

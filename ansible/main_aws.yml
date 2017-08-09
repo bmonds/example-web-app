@@ -1,7 +1,7 @@
 ---
 - include: aws_provision.yml
-- include: aws_python.yml
-- include: aws_deploy.yml
+- import: aws_python.yml
+- import: aws_deploy.yml
 #- include: nginx.yml
 #- include: nodejs.yml
 #- include: pm2.yml

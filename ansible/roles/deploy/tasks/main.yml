@@ -1,0 +1,3 @@
+- include: aws_deploy.yml
+  when: is_vagrant == false
+- include: app.yml

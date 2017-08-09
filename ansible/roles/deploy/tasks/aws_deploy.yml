@@ -1,0 +1,17 @@
+---
+- name: Change owner
+  become: yes
+  file:
+    path: /var/www
+    owner: ubuntu
+    group: ubuntu
+    state: directory
+    recurse: yes
+
+- name: Deploy files
+  copy:
+    src: "../{{ item }}"
+    dest: "/var/www/{{ item }}"
+    owner: ubuntu
+    group: ubuntu
+  with_items: [ 'bin', 'public', 'routes', 'services', 'views', 'app.js', 'ecosystem.json', 'package.json' ]
